@@ -80,10 +80,10 @@ static int bplus_tree_setting(struct bplus_tree_config *config)
 static void _proc(struct bplus_tree *tree, char op, int n)
 {
         switch (op) {
-                case 'i':
+                case 'n':
                         bplus_tree_put(tree, n, n);
                         break;
-                case 'r':
+                case 'd':
                         bplus_tree_put(tree, n, 0);
                         break;
                 case 's':
@@ -158,10 +158,10 @@ static int number_process(struct bplus_tree *tree, char op)
 
 static void command_tips(void)
 {
-        printf("i: Insert key. e.g. i 1 4-7 9\n");
-        printf("r: Remove key. e.g. r 1-100\n");
+        printf("n: Insert key. e.g. i 1 4-7 9\n");
+        printf("d: Remove key. e.g. r 1-100\n");
         printf("s: Search by key. e.g. s 41-60\n");
-        printf("d: Dump the tree structure.\n");
+        printf("p: Dump the tree structure.\n");
         printf("q: quit.\n");
 }
 
@@ -178,11 +178,11 @@ static void command_process(struct bplus_tree *tree)
                 case 'h':
                         command_tips();
                         break;
-                case 'd':
+                case 'p':
                         bplus_tree_dump(tree);
                         break;
-                case 'i':
-                case 'r':
+                case 'n':
+                case 'd':
                 case 's':
                         if (number_process(tree, c) < 0) {
                                 return;

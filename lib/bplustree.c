@@ -33,7 +33,9 @@ enum {
 #define MIN_CACHE_NUM 5
 #define offset_ptr(node) ((char *)node + sizeof(*node))
 #define key(node) ((int *)offset_ptr(node))
+/* for leaf nodes, the number of keys equals nodes */
 #define data(node) ((long *)(offset_ptr(node) + max_entries * sizeof(int)))
+/* for non-leaf nodes, the number of keys is always 1 smaller than nodes */
 #define sub(node) ((off_t *)(offset_ptr(node) + (max_order - 1) * sizeof(int)))
 
 static int max_order;
